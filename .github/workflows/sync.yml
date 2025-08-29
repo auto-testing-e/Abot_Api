@@ -1,7 +1,10 @@
 name: Sync Fork with Upstream
 
 on:  
-  workflow_dispatch:      
+  workflow_dispatch:    
+
+permissions:
+  contents: write  
 
 jobs:
   sync:
