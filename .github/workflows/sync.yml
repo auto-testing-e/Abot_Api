@@ -28,7 +28,9 @@ jobs:
 
       - name: Detect default branch
         id: default-branch
-        run: echo "branch=$(git remote show upstream | grep 'HEAD branch' | cut -d' ' -f5)" >> $GITHUB_OUTPUT
+        run: |
+          branch=$(git remote show upstream | grep 'HEAD branch' | awk '{print $NF}')
+          echo "branch=$branch" >> $GITHUB_OUTPUT
 
       - name: Rebase with upstream
         run: |
@@ -37,5 +39,3 @@ jobs:
           git pull --rebase upstream $BRANCH
           git push origin $BRANCH
 
-      - name: Push changes
-        run: git push origin main
