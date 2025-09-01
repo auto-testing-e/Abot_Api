@@ -1,12 +1,11 @@
 name: Sync Fork with Upstream
 
-on:  
-  workflow_dispatch:    
+on:
+  workflow_dispatch:
 
 permissions:
   contents: write
-  workflows: write
-
+  workflows: write   # ✅ must be at the top level, not inside jobs
 
 jobs:
   sync:
@@ -40,5 +39,3 @@ jobs:
           git checkout $BRANCH
           git pull --rebase upstream $BRANCH
           git push origin $BRANCH --force
-
-
