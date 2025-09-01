@@ -21,7 +21,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Add upstream remote
-        run: git remote add upstream https://github.com/jeena-reji/Abot-Api.git
+        run: git remote add upstream https://github.com/jeena-reji/Abot_Api.git
 
       - name: Fetch upstream
         run: git fetch upstream
