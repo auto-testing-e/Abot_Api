@@ -5,7 +5,6 @@ on:
 
 permissions:
   contents: write
-  workflows: write   # ✅ must be at the top level, not inside jobs
 
 jobs:
   sync:
@@ -27,15 +26,6 @@ jobs:
       - name: Fetch upstream
         run: git fetch upstream
 
-      - name: Detect default branch
-        id: default-branch
+      - name: Mirror upstream into fork
         run: |
-          branch=$(git remote show upstream | grep 'HEAD branch' | awk '{print $NF}')
-          echo "branch=$branch" >> $GITHUB_OUTPUT
-
-      - name: Rebase with upstream
-        run: |
-          BRANCH=${{ steps.default-branch.outputs.branch }}
-          git checkout $BRANCH
-          git pull --rebase upstream $BRANCH
-          git push origin $BRANCH --force
+          git push origin "refs/remotes/upstream/*:refs/heads/*" --force
