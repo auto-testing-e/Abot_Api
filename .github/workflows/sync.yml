@@ -37,5 +37,6 @@ jobs:
           BRANCH=${{ steps.default-branch.outputs.branch }}
           git checkout $BRANCH
           git pull --rebase upstream $BRANCH
-          git push origin $BRANCH
+          git push origin $BRANCH --force
+
 
